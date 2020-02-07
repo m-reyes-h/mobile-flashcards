@@ -26,7 +26,7 @@ export const saveTitleOfDeck = async deckTitle => {
   }
 };
 
-export const getDeckFromStack = async id => {
+export const getDecks = async id => {
   try {
     AsyncStorage.getItem(STACK_STORAGE_KEY).then(data => {
       const stack = JSON.parse(data);

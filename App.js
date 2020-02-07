@@ -8,20 +8,33 @@ import reducer from "./src/reducers";
 import { dark, blue, white, yellow } from "./src/utils/colors.js";
 
 
+import Stack from './src/components/Stack';
 import Deck from "./src/components/Deck";
 import NewCard from "./src/components/NewCard";
 import NewDeck from "./src/components/NewDeck";
 import Quiz from "./src/components/Quiz";
 
 const StackNavigation = createStackNavigator({
-  Deck: {
-    screen: Deck,
+  Stack: {
+    screen: Stack,
     navigationOptions: {
       headerTintColor: dark,
       headerStyle: {
         backgroundColor: yellow
       },
       title: "Mobile FlashCards"
+    }
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+        elevation: 0,
+        shadowOpacity: 0
+      },
+      title: "Deck"
     }
   },
   NewCard: {
@@ -50,8 +63,8 @@ const StackNavigation = createStackNavigator({
       headerTintColor: white,
       headerStyle: {
         backgroundColor: blue,
-        elevation: 0, // remove shadow on Android
-        shadowOpacity: 0 // remove shadow on iOS
+        elevation: 0,
+        shadowOpacity: 0
       },
       title: "New Deck"
     }

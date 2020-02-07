@@ -46,9 +46,9 @@ class NewDeck extends Component {
         <TouchableOpacity
           disabled={this.state.title.length === 0}
           onPress={this.addDeck}
-          style={[global.buttonStyle, { borderColor: yellow }]}
+          style={[global.buttonStyle, { borderColor: yellow, backgroundColor: yellow }]}
         >
-          <Text style={[global.buttonText, { color: yellow }]}>
+          <Text style={[global.buttonText, { color: white }]}>
             Create Deck
           </Text>
         </TouchableOpacity>

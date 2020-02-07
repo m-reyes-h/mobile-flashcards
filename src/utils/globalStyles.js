@@ -25,10 +25,11 @@ export const global = StyleSheet.create({
     color: cream,
     fontSize: 30,
     textAlign: "center",
-    marginBottom: 8
+    marginBottom: 8,
+    textTransform: "capitalize"
   },
   cardSubHeader: {
-    color: tan,
+    color: white,
     fontSize: 16,
     textAlign: "center"
   },
