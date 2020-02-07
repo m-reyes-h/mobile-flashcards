@@ -40,11 +40,13 @@ const StackNavigation = createStackNavigator({
   NewCard: {
     screen: NewCard,
     navigationOptions: {
-      headerTintColor: dark,
+      headerTintColor: white,
       headerStyle: {
-        backgroundColor: yellow
+        backgroundColor: blue,
+        elevation: 0,
+        shadowOpacity: 0
       },
-      title: "Add Flashcard"
+      title: "New Card"
     }
   },
   Quiz: {

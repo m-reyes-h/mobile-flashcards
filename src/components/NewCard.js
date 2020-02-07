@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { KeyboardAvoidingView, Text } from "react-native";
+import { KeyboardAvoidingView, Text, TouchableOpacity, TextInput } from "react-native";
 import { connect } from "react-redux";
 
 import InputButton from "./InputButton";
@@ -7,7 +7,7 @@ import InputText from "./InputText";
 
 import { addNewCard } from "../actions";
 import { addCardToDeck } from "../utils/api";
-import { charcoal, cream } from "../utils/colors";
+import { yellow, white, blue } from "../utils/colors";
 import { global } from "../utils/globalStyles";
 
 class NewCard extends Component {
@@ -43,30 +43,36 @@ class NewCard extends Component {
     return (
       <KeyboardAvoidingView
         behavior="padding"
-        style={[global.darkBackground, global.center, { padding: 15 }]}
+        style={[global.center, { padding: 15, backgroundColor: blue }]}
       >
-        <Text style={global.title}>Create a New Flashcard</Text>
-        <InputText
-          value={question}
-          handleChange={question => this.setState({ question })}
-          placeholder={"Add Your Question"}
-          marginBottom={15}
+        <TextInput
+          onChangeText={question => this.setState({ question })}
+          placeholder={"Your Question"}
+          placeholderTextColor={white}
+          style={[global.inputFloat, { marginBottom: 30 }]}
+          value={this.state.title}
+          selectionColor={white}
         />
-        <InputText
-          value={answer}
-          handleChange={answer => this.setState({ answer })}
-          placeholder={"Add Your Answer"}
-          marginBottom={30}
+
+        <TextInput
+          onChangeText={answer => this.setState({ answer })}
+          placeholder={"Your Answer"}
+          placeholderTextColor={white}
+          style={[global.inputFloat, { marginBottom: 50 }]}
+          value={this.state.title}
+          selectionColor={white}
         />
-        <InputButton
+
+        <TouchableOpacity
+          disabled={question === 0 || answer.length === 0}
           onPress={this.addCard}
-          isDisabled={question === 0 || answer.length === 0}
-          backgroundColor={cream}
-          borderColor={cream}
-          color={charcoal}
+          style={[
+            global.buttonStyle,
+            { backgroundColor: yellow, borderColor: yellow }
+          ]}
         >
-          Add Flashcard
-        </InputButton>
+          <Text style={[global.buttonText, { color: white }]}>Add Card</Text>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     );
   }

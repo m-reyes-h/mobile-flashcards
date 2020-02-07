@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Text, View, TouchableOpacity } from "react-native";
-import InputButton from "./InputButton";
-import { charcoal, cream, blue, white, yellow } from "../utils/colors";
 import { global } from "../utils/globalStyles";
+import { Text, View, TouchableOpacity } from "react-native";
+import { blue, white, yellow } from "../utils/colors";
 
 class Deck extends Component {
- 
-
   static navigationOptions = ({ navigation }) => {
     const { deckId } = navigation.state.params;
     return {
@@ -39,13 +36,18 @@ class Deck extends Component {
           onPress={this.handleAddCard}
           style={[global.buttonStyle, { borderColor: yellow }]}
         >
-          <Text style={[global.buttonText, { color: yellow }]}>Add Card</Text>
+          <Text style={[global.buttonText, { color: yellow }]}>
+            Add New Card
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          disabled={deck.question.length === 0}          
+          disabled={deck.question.length === 0}
           onPress={this.handleStartQuiz}
-          style={[global.buttonStyle, { borderColor: yellow, backgroundColor: yellow }]}
+          style={[
+            global.buttonStyle,
+            { borderColor: yellow, backgroundColor: yellow }
+          ]}
         >
           <Text style={[global.buttonText, { color: white }]}>Start Quiz</Text>
         </TouchableOpacity>
