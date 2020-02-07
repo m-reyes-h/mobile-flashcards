@@ -1,11 +1,16 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Button } from "react-native";
 
 export default class deck extends Component {
   render() {
     return (
       <View>
-        <Text>deck</Text>
+        <Text>Deck</Text>
+
+        <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.navigate("NewDeck")}
+        />
       </View>
     );
   }

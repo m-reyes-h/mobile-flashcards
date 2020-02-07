@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { KeyboardAvoidingView, Text } from "react-native";
+import {
+  KeyboardAvoidingView,
+  TextInput,
+  TouchableOpacity,
+  Text
+} from "react-native";
 import { connect } from "react-redux";
-
-import InputButton from "./InputButton";
-import InputText from "./InputText";
-
+import { global } from "../utils/globalStyles";
 import { addNewDeck } from "../actions";
 import { saveTitleOfDeck } from "../utils/api";
-import { cream, tan } from "../utils/colors";
-import { global } from "../utils/globalStyles";
+import { blue, white, yellow } from "../utils/colors";
 
 class NewDeck extends Component {
   state = {
@@ -16,13 +17,13 @@ class NewDeck extends Component {
   };
 
   addDeck = () => {
-    const newDeckTitle = this.state.title;
-    saveTitleOfDeck(newDeckTitle).then(createdDeck => {
-      this.props.dispatch(addNewDeck(createdDeck));
-      this.setState(() => ({
-        title: ""
-      }));
-      this.props.navigation.navigate("Deck", { deckId: newDeckTitle });
+    const { title } = this.state;
+    const { navigation, dispatch } = this.props;
+
+    saveTitleOfDeck(title).then(createdDeck => {
+      dispatch(addNewDeck(createdDeck));
+      this.setState({ title: "" });
+      navigation.navigate("Deck", { deckId: title });
     });
   };
 
@@ -31,25 +32,26 @@ class NewDeck extends Component {
       <KeyboardAvoidingView
         behavior="padding"
         enabled
-        style={[global.darkBackground, global.center, { padding: 15 }]}
+        style={[global.center, { backgroundColor: blue, padding: 15 }]}
       >
-        <Text style={[global.subHeader, { color: cream, marginBottom: 40 }]}>
-          Create a New Flashcard Deck
-        </Text>
-        <InputText
-          handleChange={title => this.setState({ title })}
-          placeholder={"What is the Title of your Deck?"}
-          marginBottom={40}
+        <TextInput
+          onChangeText={title => this.setState({ title })}
+          placeholder={"Enter Title"}
+          placeholderTextColor={white}
+          style={global.inputFloat}
           value={this.state.title}
+          selectionColor={white}
         />
-        <InputButton
+
+        <TouchableOpacity
+          disabled={this.state.title.length === 0}
           onPress={this.addDeck}
-          isDisabled={this.state.title.length === 0}
-          borderColor={tan}
-          color={tan}
+          style={[global.buttonStyle, { borderColor: yellow }]}
         >
-          Add Deck
-        </InputButton>
+          <Text style={[global.buttonText, { color: yellow }]}>
+            Create Deck
+          </Text>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     );
   }
