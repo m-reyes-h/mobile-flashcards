@@ -6,7 +6,7 @@ import { createAppContainer } from "react-navigation";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./src/reducers";
-import { charcoal, cream, gray } from "./src/utils/color.js";
+import { charcoal, cream, gray } from "./src/utils/colors.js";
 
 import { Ionicons } from "@expo/vector-icons";
 

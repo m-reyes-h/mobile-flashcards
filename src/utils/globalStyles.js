@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { charcoal, cream, gray, tan } from "./color";
+import { charcoal, cream, gray, tan } from "./colors";
 
 export const global = StyleSheet.create({
   buttonStyle: {
