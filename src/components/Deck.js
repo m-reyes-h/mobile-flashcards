@@ -28,7 +28,7 @@ class Deck extends Component {
         <Text style={[global.cardHeader, { color: white, marginBottom: 10 }]}>
           {deck.title}
         </Text>
-        <Text style={[global.cardSubHeader, { marginBottom: 50 }]}>
+        <Text style={[global.cardSubHeader, { marginBottom: 50, color: white }]}>
           ({deck.question.length} cards)
         </Text>
 

@@ -7,8 +7,8 @@ export const global = StyleSheet.create({
     minWidth: 48,
     height: 48,
     maxHeight: 48,
-    borderRadius: 50, 
-    position: 'absolute',
+    borderRadius: 50,
+    position: "absolute",
     right: 16,
     bottom: 16,
     padding: 12,
@@ -24,14 +24,14 @@ export const global = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     textAlign: "center",
-    textTransform: 'uppercase'
+    textTransform: "uppercase"
   },
   card: {
     padding: 20,
     marginBottom: 10,
     backgroundColor: white,
-    width: 'auto',
-    marginLeft: 'auto'
+    width: "auto",
+    marginLeft: "auto"
   },
   cardHeader: {
     color: dark,
@@ -62,7 +62,7 @@ export const global = StyleSheet.create({
   },
   inputFloat: {
     height: 52,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     color: white,
     borderWidth: 0,
     borderBottomColor: white,
@@ -86,7 +86,7 @@ export const global = StyleSheet.create({
     color: tan,
     fontSize: 30
   },
-  wrapper: {
+  rowCenter: {
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between"

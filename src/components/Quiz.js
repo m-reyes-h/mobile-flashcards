@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 
 import InputButton from "./InputButton";
 
-import { charcoal, cream, tan } from "../utils/color";
+import { charcoal, cream, tan, yellow } from "../utils/colors";
 import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
-import { global } from "../utils/global";
+import { global } from "../utils/globalStyles";
 
 class Quiz extends Component {
   state = {
@@ -16,40 +16,67 @@ class Quiz extends Component {
     incorrectAnswers: 0
   };
 
+  renderHeader = (index, deck) => {
+    return (
+      <View
+        style={[
+          global.row,
+          {
+            width: "100%",
+            justifyContent: "flex-start",
+            marginBottom: 24,
+            marginTop: 16,
+            marginLeft: 16
+          }
+        ]}
+      >
+        <Text style={[global.cardSubHeader, { marginRight: 16 }]}>
+          {deck.title}
+        </Text>
+        <View style={global.row}>
+          <Text
+            style={[
+              global.cardSubHeader,
+              { fontWeight: "bold", paddingRight: 4 }
+            ]}
+          >
+            {index + 1}
+          </Text>
+          <Text style={global.cardSubHeader}>of {deck.question.length}</Text>
+        </View>
+      </View>
+    );
+  };
+
   renderQuestion = (index, deck) => (
-    <View style={global.wrapper}>
-      <Text style={[global.cardSubHeader, { marginBottom: 10 }]}>
-        {index + 1} / {deck.question.length}
-      </Text>
+    <View style={global.rowCenter}>
+      {this.renderHeader(index, deck)}
+
       <Text style={[global.cardHeader, { marginBottom: 40 }]}>
         {deck.question[index].question}
       </Text>
-      <InputButton
-        backgroundColor={"transparent"}
-        borderColor={"transparent"}
-        color={cream}
+
+      <TouchableOpacity
         onPress={this.toggleShowAnswer}
+        style={[global.buttonStyle, { borderColor: yellow }]}
       >
-        Show Answer
-      </InputButton>
+        <Text style={[global.buttonText, { color: yellow }]}>
+          Show Me The Answer
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 
-  static navigationOptions = ({ navigation }) => {
-    const { deckId } = navigation.state.params;
-    return {
-      title: `${deckId} Quiz`
-    };
-  };
+  //-----------------------------------
 
   renderAnswer = (index, deck) => (
-    <View style={global.wrapper}>
-      <Text style={[global.cardSubHeader, { marginBottom: 10 }]}>
-        {index + 1} / {deck.question.length}
-      </Text>
+    <View style={global.rowCenter}>
+      {this.renderHeader(index, deck)}
+
       <Text style={[global.cardHeader, { marginBottom: 40 }]}>
         {deck.question[index].answer}
       </Text>
+
       <InputButton
         backgroundColor={"transparent"}
         borderColor={"transparent"}
@@ -58,6 +85,7 @@ class Quiz extends Component {
       >
         Show Question
       </InputButton>
+
       <InputButton
         backgroundColor={cream}
         borderColor={cream}
@@ -77,10 +105,12 @@ class Quiz extends Component {
     </View>
   );
 
+  //--------------------------------------------
+
   renderScore = () => {
     clearLocalNotification().then(setLocalNotification());
     return (
-      <View style={global.wrapper}>
+      <View style={global.rowCenter}>
         <Text style={[global.cardSubHeader, { marginBottom: 5 }]}>
           Correct Answers: {this.state.correctAnswers}
         </Text>
@@ -144,8 +174,7 @@ class Quiz extends Component {
     const { questionIndex, showAnswer } = this.state;
 
     return (
-      <View style={[global.darkBackground, { padding: 10, flex: 1 }]}>
-        {" "}
+      <View style={{ backgroundColor:yellow, padding: 10, flex: 1 }}>
         {showAnswer === false
           ? questionIndex < deck.question.length
             ? this.renderQuestion(questionIndex, deck)

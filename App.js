@@ -7,8 +7,7 @@ import { createStore } from "redux";
 import reducer from "./src/reducers";
 import { dark, blue, white, yellow } from "./src/utils/colors.js";
 
-
-import Stack from './src/components/Stack';
+import Stack from "./src/components/Stack";
 import Deck from "./src/components/Deck";
 import NewCard from "./src/components/NewCard";
 import NewDeck from "./src/components/NewDeck";
@@ -56,7 +55,9 @@ const StackNavigation = createStackNavigator({
     navigationOptions: {
       headerTintColor: dark,
       headerStyle: {
-        backgroundColor: yellow
+        backgroundColor: yellow,
+        elevation: 0,
+        shadowOpacity: 0
       },
       title: "Quiz"
     }
@@ -83,24 +84,8 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {/* <View
-          style={{
-            flex: 1,
-            backgroundColor: yellow
-          }}
-        > */}
-          <AppContainer />
-        {/* </View> */}
+        <AppContainer />
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
