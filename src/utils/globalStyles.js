@@ -1,8 +1,19 @@
 import { StyleSheet } from "react-native";
 
-import { white, charcoal, cream, gray, tan } from "./colors";
+import { white, cream, tan, dark } from "./colors";
 
 export const global = StyleSheet.create({
+  fab: {
+    minWidth: 48,
+    height: 48,
+    maxHeight: 48,
+    borderRadius: 50, 
+    position: 'absolute',
+    right: 16,
+    bottom: 16,
+    padding: 12,
+    paddingRight: 20
+  },
   buttonStyle: {
     width: "80%",
     borderRadius: 50,
@@ -16,42 +27,38 @@ export const global = StyleSheet.create({
     textTransform: 'uppercase'
   },
   card: {
-    borderRadius: 15,
     padding: 20,
     marginBottom: 10,
-    backgroundColor: charcoal
+    backgroundColor: white,
+    width: 'auto',
+    marginLeft: 'auto'
   },
   cardHeader: {
-    color: cream,
+    color: dark,
     fontSize: 30,
-    textAlign: "center",
+    textAlign: "left",
     marginBottom: 8,
     textTransform: "capitalize"
   },
   cardSubHeader: {
-    color: white,
+    color: dark,
     fontSize: 16,
-    textAlign: "center"
+    textAlign: "left"
   },
   center: {
     justifyContent: "center",
     alignItems: "center",
     flex: 1
   },
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center"
+  },
   header: {
-    color: cream,
+    color: white,
     fontSize: 50,
     fontWeight: "700"
-  },
-  inputField: { // todo delete
-    height: 50,
-    borderColor: gray,
-    borderWidth: 1,
-    borderRadius: 5,
-    width: "80%",
-    paddingRight: 10,
-    paddingLeft: 10,
-    color: cream
   },
   inputFloat: {
     height: 52,

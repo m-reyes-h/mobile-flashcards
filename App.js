@@ -20,7 +20,9 @@ const StackNavigation = createStackNavigator({
     navigationOptions: {
       headerTintColor: dark,
       headerStyle: {
-        backgroundColor: yellow
+        backgroundColor: yellow,
+        elevation: 0,
+        shadowOpacity: 0
       },
       title: "Mobile FlashCards"
     }

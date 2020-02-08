@@ -1,11 +1,17 @@
 import { AppLoading } from "expo";
 import React, { Component } from "react";
-import { FlatList, Text, TouchableOpacity, View, Button } from "react-native";
+import {
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+  TouchableHighlight
+} from "react-native";
 import { connect } from "react-redux";
-
+import { MaterialCommunityIcons as MCI } from "@expo/vector-icons";
 import { addNewStack } from "../actions";
 import { getDecks } from "../utils/api";
-import { cream } from "../utils/colors";
+import { white, yellow, blue, dark } from "../utils/colors";
 import { global } from "../utils/globalStyles";
 
 class Stack extends Component {
@@ -24,9 +30,12 @@ class Stack extends Component {
     return (
       <TouchableOpacity onPress={() => this.viewDeck(item)} style={global.card}>
         <Text style={global.cardHeader}>{stack[item].title}</Text>
-        <Text style={global.cardSubHeader}>
-          ({stack[item].question.length} Cards)
-        </Text>
+        <View style={global.row}>
+          <MCI name="cards-outline" size={24} color={dark} />
+          <Text style={[global.cardSubHeader, {marginLeft: 12}]}>
+            ({stack[item].question.length} Cards)
+          </Text>
+        </View>
       </TouchableOpacity>
     );
   };
@@ -40,12 +49,12 @@ class Stack extends Component {
     const { ready } = this.state;
     const deckKeys = Object.keys(stack);
 
-    if (ready === false) {
+    if (!ready) {
       return <AppLoading />;
     }
 
     return (
-      <View style={[global.center, { padding: 20 }]}>
+      <View style={[global.center, { padding: 20, backgroundColor: yellow }]}>
         {deckKeys.length > 0 ? (
           <FlatList
             data={deckKeys}
@@ -54,15 +63,22 @@ class Stack extends Component {
             style={global.list}
           />
         ) : (
-          <Text style={[global.header, { color: cream }]}>
-            There are no decks.
-          </Text>
+          <View>
+            <Text style={[global.header, { color: white }]}>
+              There are no decks.
+            </Text>
+          </View>
         )}
 
-        <Button
-          title="Go to Details"
+        <TouchableHighlight
+          style={[global.fab, global.center, { backgroundColor: blue }]}
           onPress={() => this.props.navigation.navigate("NewDeck")}
-        />
+        >
+          <View style={global.row}>
+            <MCI name="cards" size={30} color={white} />
+            <Text style={{ marginLeft: 12, color: white }}>Add New Deck</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }

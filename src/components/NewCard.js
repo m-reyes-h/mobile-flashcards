@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { KeyboardAvoidingView, Text, TouchableOpacity, TextInput } from "react-native";
 import { connect } from "react-redux";
 
-import InputButton from "./InputButton";
-import InputText from "./InputText";
 
 import { addNewCard } from "../actions";
 import { addCardToDeck } from "../utils/api";
