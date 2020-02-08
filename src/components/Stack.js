@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { MaterialCommunityIcons as MCI } from "@expo/vector-icons";
-import { addNewStack } from "../actions";
+import { addStack } from "../actions";
 import { getDecks } from "../utils/api";
 import { white, yellow, blue, dark } from "../utils/colors";
 import { global } from "../utils/globalStyles";
@@ -21,7 +21,7 @@ class Stack extends Component {
 
   componentDidMount() {
     getDecks()
-      .then(stack => this.props.dispatch(addNewStack(stack)))
+      .then(stack => this.props.dispatch(addStack(stack)))
       .then(() => this.setState({ ready: true }));
   }
 

@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { global } from "../utils/globalStyles";
-import { addNewDeck } from "../actions";
+import { addDeck } from "../actions";
 import { saveDeck } from "../utils/api";
 import { blue, white, yellow } from "../utils/colors";
 
@@ -21,7 +21,7 @@ class NewDeck extends Component {
     const { navigation, dispatch } = this.props;
 
     saveDeck(title).then(createdDeck => {
-      dispatch(addNewDeck(createdDeck));
+      dispatch(addDeck(createdDeck));
       this.setState({ title: "" });
       navigation.navigate("Deck", { deckId: title });
     });

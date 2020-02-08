@@ -1,21 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-
-import InputButton from "./InputButton";
-
 import { MaterialCommunityIcons as MCI } from "@expo/vector-icons";
-
-import {
-  charcoal,
-  cream,
-  tan,
-  yellow,
-  blue,
-  white,
-  red,
-  dark
-} from "../utils/colors";
+import { yellow, blue, white, red } from "../utils/colors";
 import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
 import { global } from "../utils/globalStyles";
 
@@ -174,28 +161,19 @@ class Quiz extends Component {
           ).toFixed()}
           %
         </Text>
-        <InputButton borderColor={cream} color={cream} onPress={this.reset}>
-          Take it again!
-        </InputButton>
 
-        <TouchableOpacity onPress={this.reset}>
-          <Text style={[global.buttonStyle, { color: dark }]}>Start again</Text>
-        </TouchableOpacity>
-
-        <InputButton
-          backgroundColor={cream}
-          borderColor={cream}
-          color={charcoal}
-          onPress={() => this.props.navigation.navigate("Deck")}
+        <TouchableOpacity
+          style={[global.buttonStyle, { borderColor: blue }]}
+          onPress={this.reset}
         >
-          Back To Deck
-        </InputButton>
+          <Text style={[global.buttonText, { color: blue }]}>Start again</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Deck")}
-          style={[global.buttonStyle]}
+          style={[global.buttonStyle, { color: blue, borderColor: blue }]}
         >
-          <Text style={{ color: dark }}>Back To Deck</Text>
+          <Text style={[global.buttonText, { color: blue }]}>Back To Deck</Text>
         </TouchableOpacity>
       </View>
     );
