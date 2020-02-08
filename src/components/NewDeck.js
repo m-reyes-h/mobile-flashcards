@@ -8,7 +8,7 @@ import {
 import { connect } from "react-redux";
 import { global } from "../utils/globalStyles";
 import { addNewDeck } from "../actions";
-import { saveTitleOfDeck } from "../utils/api";
+import { saveDeck } from "../utils/api";
 import { blue, white, yellow } from "../utils/colors";
 
 class NewDeck extends Component {
@@ -20,7 +20,7 @@ class NewDeck extends Component {
     const { title } = this.state;
     const { navigation, dispatch } = this.props;
 
-    saveTitleOfDeck(title).then(createdDeck => {
+    saveDeck(title).then(createdDeck => {
       dispatch(addNewDeck(createdDeck));
       this.setState({ title: "" });
       navigation.navigate("Deck", { deckId: title });

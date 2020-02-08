@@ -59,6 +59,31 @@ class Quiz extends Component {
     );
   };
 
+  incrementAnswers = key => {
+    this.setState(state => ({
+      ...state,
+      showAnswer: !state.showAnswer,
+      [key]: state[key] + 1,
+      questionIndex: state.questionIndex + 1
+    }));
+  };
+
+  toggleShowAnswer = () => {
+    this.setState(state => ({
+      ...state,
+      showAnswer: !state.showAnswer
+    }));
+  };
+
+  reset = () => {
+    this.setState(() => ({
+      questionIndex: 0,
+      showAnswer: false,
+      correctAnswers: 0,
+      incorrectAnswers: 0
+    }));
+  };
+
   renderQuestion = (index, deck) => (
     <View style={global.rowCenter}>
       {this.renderHeader(index, deck)}
@@ -97,13 +122,12 @@ class Quiz extends Component {
         </Text>
       </TouchableOpacity>
 
-      <Text style={{marginTop: 32, marginBottom: 50, fontSize: 24}}>How was your response?</Text>
+      <Text style={{ marginTop: 32, marginBottom: 50, fontSize: 24 }}>
+        How was your response?
+      </Text>
 
       <View
-        style={[
-          global.row,
-          { justifyContent: "space-between", width: "40%" }
-        ]}
+        style={[global.row, { justifyContent: "space-between", width: "40%" }]}
       >
         <TouchableOpacity
           onPress={() => this.incrementAnswers("incorrectAnswers")}
@@ -153,43 +177,28 @@ class Quiz extends Component {
         <InputButton borderColor={cream} color={cream} onPress={this.reset}>
           Take it again!
         </InputButton>
+
+        <TouchableOpacity onPress={this.reset}>
+          <Text style={[global.buttonStyle, { color: dark }]}>Start again</Text>
+        </TouchableOpacity>
+
         <InputButton
           backgroundColor={cream}
           borderColor={cream}
           color={charcoal}
-          onPress={() =>
-            this.props.navigation.navigate("Deck")
-          }
+          onPress={() => this.props.navigation.navigate("Deck")}
         >
           Back To Deck
         </InputButton>
+
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("Deck")}
+          style={[global.buttonStyle]}
+        >
+          <Text style={{ color: dark }}>Back To Deck</Text>
+        </TouchableOpacity>
       </View>
     );
-  };
-
-  incrementAnswers = key => {
-    this.toggleShowAnswer();
-    this.setState(state => ({
-      ...state,
-      [key]: state[key] + 1,
-      questionIndex: state.questionIndex + 1
-    }));
-  };
-
-  toggleShowAnswer = () => {
-    this.setState(state => ({
-      ...state,
-      showAnswer: !state.showAnswer
-    }));
-  };
-
-  reset = () => {
-    this.setState(() => ({
-      questionIndex: 0,
-      showAnswer: false,
-      correctAnswers: 0,
-      incorrectAnswers: 0
-    }));
   };
 
   render() {

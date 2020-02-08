@@ -2,7 +2,7 @@ import { AsyncStorage } from "react-native";
 
 import { STACK_STORAGE_KEY, createDeck } from "./helpers";
 
-export const addCardToDeck = async (deckTitle, newCard) => {
+export const addCard = async (deckTitle, newCard) => {
   try {
     AsyncStorage.getItem(STACK_STORAGE_KEY).then(data => {
       const stack = JSON.parse(data);
@@ -12,11 +12,11 @@ export const addCardToDeck = async (deckTitle, newCard) => {
       return createdDeck;
     });
   } catch (error) {
-    console.warn("Error Adding Flashcard to Deck: ", error);
+    console.warn("Error adding card on Deck: ", error);
   }
 };
 
-export const saveTitleOfDeck = async deckTitle => {
+export const saveDeck = async deckTitle => {
   const createdDeck = createDeck(deckTitle);
   try {
     AsyncStorage.mergeItem(STACK_STORAGE_KEY, JSON.stringify(createdDeck));

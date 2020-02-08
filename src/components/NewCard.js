@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 
 import { addNewCard } from "../actions";
-import { addCardToDeck } from "../utils/api";
+import { addCard } from "../utils/api";
 import { yellow, white, blue } from "../utils/colors";
 import { global } from "../utils/globalStyles";
 
@@ -25,7 +25,7 @@ class NewCard extends Component {
     const { deckId } = this.props;
     const newCard = this.state;
 
-    addCardToDeck(deckId, newCard).then(() => {
+    addCard(deckId, newCard).then(() => {
       this.props.dispatch(addNewCard(deckId, newCard));
       this.setState(() => ({
         question: "",
