@@ -14,6 +14,13 @@ export const global = StyleSheet.create({
     padding: 12,
     paddingRight: 20
   },
+  roundButtonStyle: {
+    borderRadius: 50,
+    height: 64,
+    width: 64,
+    maxHeight: 64,
+    maxWidth: 64
+  },
   buttonStyle: {
     width: "80%",
     borderRadius: 50,

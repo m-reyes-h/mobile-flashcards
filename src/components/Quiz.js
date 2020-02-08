@@ -4,7 +4,18 @@ import { connect } from "react-redux";
 
 import InputButton from "./InputButton";
 
-import { charcoal, cream, tan, yellow } from "../utils/colors";
+import { MaterialCommunityIcons as MCI } from "@expo/vector-icons";
+
+import {
+  charcoal,
+  cream,
+  tan,
+  yellow,
+  blue,
+  white,
+  red,
+  dark
+} from "../utils/colors";
 import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
 import { global } from "../utils/globalStyles";
 
@@ -58,9 +69,9 @@ class Quiz extends Component {
 
       <TouchableOpacity
         onPress={this.toggleShowAnswer}
-        style={[global.buttonStyle, { borderColor: yellow }]}
+        style={[global.buttonStyle, { borderColor: blue }]}
       >
-        <Text style={[global.buttonText, { color: yellow }]}>
+        <Text style={[global.buttonText, { color: blue }]}>
           Show Me The Answer
         </Text>
       </TouchableOpacity>
@@ -77,31 +88,45 @@ class Quiz extends Component {
         {deck.question[index].answer}
       </Text>
 
-      <InputButton
-        backgroundColor={"transparent"}
-        borderColor={"transparent"}
-        color={cream}
+      <TouchableOpacity
         onPress={this.toggleShowAnswer}
+        style={[global.buttonStyle, { borderColor: blue }]}
       >
-        Show Question
-      </InputButton>
+        <Text style={[global.buttonText, { color: blue }]}>
+          Show Me The Question
+        </Text>
+      </TouchableOpacity>
 
-      <InputButton
-        backgroundColor={cream}
-        borderColor={cream}
-        color={charcoal}
-        onPress={() => this.incrementAnswers("correctAnswers")}
+      <Text style={{marginTop: 32, marginBottom: 50, fontSize: 24}}>How was your response?</Text>
+
+      <View
+        style={[
+          global.row,
+          { justifyContent: "space-between", width: "40%" }
+        ]}
       >
-        Correct
-      </InputButton>
-      <InputButton
-        backgroundColor={tan}
-        borderColor={tan}
-        color={cream}
-        onPress={() => this.incrementAnswers("incorrectAnswers")}
-      >
-        Incorrect
-      </InputButton>
+        <TouchableOpacity
+          onPress={() => this.incrementAnswers("incorrectAnswers")}
+          style={[
+            global.roundButtonStyle,
+            global.center,
+            { backgroundColor: red }
+          ]}
+        >
+          <MCI name="thumb-down-outline" size={28} color={white} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => this.incrementAnswers("correctAnswers")}
+          style={[
+            global.roundButtonStyle,
+            global.center,
+            { backgroundColor: blue }
+          ]}
+        >
+          <MCI name="thumb-up-outline" size={28} color={white} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
@@ -133,9 +158,7 @@ class Quiz extends Component {
           borderColor={cream}
           color={charcoal}
           onPress={() =>
-            this.props.navigation.navigate("Deck", {
-              deckId: this.props.deckId
-            })
+            this.props.navigation.navigate("Deck")
           }
         >
           Back To Deck
@@ -174,7 +197,7 @@ class Quiz extends Component {
     const { questionIndex, showAnswer } = this.state;
 
     return (
-      <View style={{ backgroundColor:yellow, padding: 10, flex: 1 }}>
+      <View style={{ backgroundColor: yellow, padding: 10, flex: 1 }}>
         {showAnswer === false
           ? questionIndex < deck.question.length
             ? this.renderQuestion(questionIndex, deck)
