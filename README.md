@@ -22,7 +22,7 @@ The app has been tested on the following devices:
 
 You can pick a quiz set from any of the decks and can add new decks.
 
-![](./screens/main.png "Main")
+![](./screens/main.png "Main") { width: 200px; }
 
 ### Deck screen
 
