@@ -1,7 +1,7 @@
 import { Constants, Notifications, Permissions } from "expo";
 import { AsyncStorage } from "react-native";
 
-export const STACK_STORAGE_KEY = "Flashcards:stack";
+export const CARD_STORAGE_KEY = "MFlashCards:cards";
 
 export function createDeck(deckTitle, question) {
   return {
@@ -12,7 +12,7 @@ export function createDeck(deckTitle, question) {
   };
 }
 
-const NOTIFICATION_KEY = "Flashcards:notifications";
+const NOTIFICATION_KEY = "MFlashCards:notifications";
 
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
@@ -22,8 +22,8 @@ export function clearLocalNotification() {
 
 export function createNotification() {
   return {
-    title: "Time to Learn!",
-    body: "Don't forget to run through your flashcards today.",
+    title: "Your daily Quiz!",
+    body: "Feed \u{1F34E} your brain \u{1F9E0} today!.",
     ios: {
       sound: true
     },

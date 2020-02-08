@@ -11,11 +11,13 @@ function stack(state = {}, action) {
           question: updateQuestion,
         },
       };
+
     case ADD_DECK:
       return {
         ...state,
         ...action.deck,
       };
+      
     case ADD_STACK:
       return {
         ...state,

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-import { white, cream, tan, dark } from "./colors";
+import { white, tan, dark } from "./colors";
 
 export const global = StyleSheet.create({
   fab: {
@@ -82,11 +82,6 @@ export const global = StyleSheet.create({
     alignSelf: "flex-start",
     marginTop: 50,
     width: "100%"
-  },
-  subHeader: {
-    color: cream,
-    fontSize: 40,
-    textAlign: "center"
   },
   title: {
     marginBottom: 30,

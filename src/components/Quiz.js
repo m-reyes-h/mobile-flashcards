@@ -8,7 +8,7 @@ import { global } from "../utils/globalStyles";
 
 class Quiz extends Component {
   state = {
-    questionIndex: 0,
+    questionIdx: 0,
     showAnswer: false,
     correctAnswers: 0,
     incorrectAnswers: 0
@@ -46,32 +46,32 @@ class Quiz extends Component {
     );
   };
 
-  incrementAnswers = key => {
+  postAnswer = key => {
     this.setState(state => ({
       ...state,
       showAnswer: !state.showAnswer,
       [key]: state[key] + 1,
-      questionIndex: state.questionIndex + 1
+      questionIdx: state.questionIdx + 1
     }));
   };
 
-  toggleShowAnswer = () => {
+  handleShowHideAnswer = () => {
     this.setState(state => ({
       ...state,
       showAnswer: !state.showAnswer
     }));
   };
 
-  reset = () => {
+  resetQuiz = () => {
     this.setState(() => ({
-      questionIndex: 0,
+      questionIdx: 0,
       showAnswer: false,
       correctAnswers: 0,
       incorrectAnswers: 0
     }));
   };
 
-  renderQuestion = (index, deck) => (
+  handleRenderQuestion = (index, deck) => (
     <View style={global.rowCenter}>
       {this.renderHeader(index, deck)}
 
@@ -80,7 +80,7 @@ class Quiz extends Component {
       </Text>
 
       <TouchableOpacity
-        onPress={this.toggleShowAnswer}
+        onPress={this.handleShowHideAnswer}
         style={[global.buttonStyle, { borderColor: blue }]}
       >
         <Text style={[global.buttonText, { color: blue }]}>
@@ -92,7 +92,7 @@ class Quiz extends Component {
 
   //-----------------------------------
 
-  renderAnswer = (index, deck) => (
+  handleRenderAnswer = (index, deck) => (
     <View style={global.rowCenter}>
       {this.renderHeader(index, deck)}
 
@@ -101,7 +101,7 @@ class Quiz extends Component {
       </Text>
 
       <TouchableOpacity
-        onPress={this.toggleShowAnswer}
+        onPress={this.handleShowHideAnswer}
         style={[global.buttonStyle, { borderColor: blue }]}
       >
         <Text style={[global.buttonText, { color: blue }]}>
@@ -117,7 +117,7 @@ class Quiz extends Component {
         style={[global.row, { justifyContent: "space-between", width: "40%" }]}
       >
         <TouchableOpacity
-          onPress={() => this.incrementAnswers("incorrectAnswers")}
+          onPress={() => this.postAnswer("incorrectAnswers")}
           style={[
             global.roundButtonStyle,
             global.center,
@@ -128,7 +128,7 @@ class Quiz extends Component {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => this.incrementAnswers("correctAnswers")}
+          onPress={() => this.postAnswer("correctAnswers")}
           style={[
             global.roundButtonStyle,
             global.center,
@@ -164,7 +164,7 @@ class Quiz extends Component {
 
         <TouchableOpacity
           style={[global.buttonStyle, { borderColor: blue }]}
-          onPress={this.reset}
+          onPress={this.resetQuiz}
         >
           <Text style={[global.buttonText, { color: blue }]}>Start again</Text>
         </TouchableOpacity>
@@ -181,15 +181,15 @@ class Quiz extends Component {
 
   render() {
     const { deck } = this.props;
-    const { questionIndex, showAnswer } = this.state;
+    const { questionIdx, showAnswer } = this.state;
 
     return (
       <View style={{ backgroundColor: yellow, padding: 10, flex: 1 }}>
         {showAnswer === false
-          ? questionIndex < deck.question.length
-            ? this.renderQuestion(questionIndex, deck)
+          ? questionIdx < deck.question.length
+            ? this.handleRenderQuestion(questionIdx, deck)
             : this.renderScore()
-          : this.renderAnswer(questionIndex, deck)}
+          : this.handleRenderAnswer(questionIdx, deck)}
       </View>
     );
   }
